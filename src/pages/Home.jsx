@@ -6,14 +6,16 @@ const Home = () => {
 
   const [currentWeather, setCurrentWeather] = useState([]);
 
-  const [inputCity, setInputCity] = useState("buenos aires");
+  const [inputValue, setInputValue] = useState("");
+
+  const [location, setLocation] = useState("");
 
   // ------------------------------------------------------------------------------------------------
 
-  const currentWeatherApi = async (city) => {
+  const weatherApi = async (city) => {
     try {
       const resp = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_WEATHER_MAP_API_KEY}&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_WEATHER_MAP_API_KEY}&units=metric&lang=es`
       );
       const data = await resp.json();
       console.log(data);
@@ -24,15 +26,15 @@ const Home = () => {
   };
 
   useEffect(() => {
-    currentWeatherApi(inputCity);
-  }, [inputCity]);
+    weatherApi(location);
+  }, [location]);
 
   // -------------------------------------------------------------------------------------------------
 
   const unsplashApi = async () => {
     try {
       const response = await fetch(
-        `https://api.unsplash.com/photos/random/?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&orientation=landscape&query=nature&count=1`
+        `https://api.unsplash.com/photos/random/?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&orientation=landscape&query=paisajes&count=1`
       );
       const dataImg = await response.json();
       console.log(dataImg);
@@ -48,12 +50,6 @@ const Home = () => {
 
   // ----------------------------------------------------------------------------------------------------
 
-  // const handleSubmitCity = (e) => {
-  //   e.preventDefault();
-  //   currentWeatherApi(inputCity);
-  //   setInputCity("");
-  // };
-
   return (
     <div className="relative h-screen w-full">
       <img
@@ -61,13 +57,21 @@ const Home = () => {
         src={unsplashImg}
         alt="unsplash nature"
       />
-      <div className="absolute top-0 left-0 h-full w-full bg-gray-800/30"></div>
-      <div className="absolute top-0 left-0 h-full w-full flex flex-col justify-around items-center">
+      <div className="absolute top-0 left-0 h-full w-full bg-gray-800/40"></div>
+      <div className="absolute top-0 left-0 h-full w-full px-12 py-8 flex flex-col justify-center items-center">
         <InputSearch
-          inputCity={inputCity}
-          setInputCity={setInputCity}
-          // handleSubmitCity={handleSubmitCity}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+          location={location}
+          setLocation={setLocation}
         />
+
+        {currentWeather.cod === "404" && (
+          <p className="text-lg md:text-2xl text-gray-200 font-bold">
+            Ciudad no encontrada
+          </p>
+        )}
+        <h3>{currentWeather.name}</h3>
       </div>
     </div>
   );

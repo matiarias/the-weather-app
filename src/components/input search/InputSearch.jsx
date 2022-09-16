@@ -1,21 +1,37 @@
 import React from "react";
+import { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 
-const InputSearch = ({ inputCity, setInputCity }) => {
+const InputSearch = ({ inputValue, setInputValue, location, setLocation }) => {
+  const [validation, setValidation] = useState(false);
+
   const handleInputSearch = ({ target }) => {
-    setInputCity(target.value);
+    setInputValue(target.value);
     // console.log(target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (inputValue.trim() !== "") {
+      setLocation(inputValue.trim());
+      setInputValue("");
+      setValidation(false);
+    } else {
+      console.log("Ingresa una ciudad");
+      setValidation(true);
+    }
   };
 
   return (
     <>
-      <form className="flex items-center">
+      <form onSubmit={handleSubmit} className="flex items-center">
         <input
-          className="relative w-[300px] h-12 px-4 bg-gray-600/70 border-y-4 border-l-4 border-gray-200/70 rounded-tl-lg rounded-bl-lg focus:outline-none placeholder:italic placeholder:text-gray-100 text-gray-100"
+          className="w-[200px] sm:w-[270px] md:w-[300px] h-12 px-4 bg-gray-600/70 border-y-4 border-l-4 border-gray-200/70 rounded-tl-lg rounded-bl-lg focus:outline-none placeholder:italic placeholder:text-gray-100 text-gray-100"
           type="text"
-          placeholder="Enter Location"
+          placeholder="Ingresá una Ciudad"
           maxLength="40"
-          value={inputCity}
+          value={inputValue}
+          name={location}
           onChange={handleInputSearch}
         />
         <button
@@ -25,6 +41,11 @@ const InputSearch = ({ inputCity, setInputCity }) => {
           <BsSearch className="text-2xl text-gray-100 animate-pulse" />
         </button>
       </form>
+      {validation && (
+        <h3 className="text-center text-gray-200 text-lg md:text-xl font-bold mt-2">
+          Ingresa una ciudad por favor
+        </h3>
+      )}
     </>
   );
 };
