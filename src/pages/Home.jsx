@@ -50,7 +50,7 @@ const Home = () => {
     weatherNextDaysApi(location);
   }, [location]);
 
-  // --------------------------------- unsplash Api function ------------------------------------------
+  // --------------------------------- unsplash API function ------------------------------------------
 
   const unsplashApi = async () => {
     try {
@@ -74,6 +74,7 @@ const Home = () => {
   const date = new Date();
   const options = {
     day: "numeric",
+    weekday: "long",
     month: "long",
     year: "numeric",
   };
@@ -101,6 +102,8 @@ const Home = () => {
           />
         </div>
 
+        {/* ------------------------------------------------------------------------------------------ */}
+
         {currentWeather.cod === "404" && (
           <p className="text-lg md:text-2xl text-gray-200 font-bold">
             Ciudad no encontrada
@@ -108,11 +111,15 @@ const Home = () => {
         )}
 
         {/* -------------------------------------------------------------------------------- */}
+
         <div className="relative w-full md:w-[600px] lg:w-[800px] h-auto py-8 sm:py-12 px-2 sm:px-4 flex flex-col justify-center items-center gap-4 bg-black bg-opacity-70 rounded-md shadow-md shadow-white">
-          <div className="sm:absolute top-2 left-4 flex flex-col">
+          {/* --------------------------------------------------------------------------------------- */}
+
+          <div className="sm:absolute h-auto top-2 left-4 flex flex-col items-center">
             <span className="text-gray-100 text-lg md:text-xl font-bold">
               {currentWeather.name}
             </span>
+
             {currentWeather.sys ? (
               <span className="text-gray-100 text-sm md:text-lg font-medium">
                 {currentWeather.sys.country}
@@ -155,23 +162,27 @@ const Home = () => {
           <div className="mt-2">
             <div className="mb-2">
               {currentWeather.weather ? (
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-100">
+                <h3 className="text-2xl md:text-3xl font-bold text-yellow-200">
                   {currentWeather.weather[0].description}
                 </h3>
               ) : null}
             </div>
             {currentWeather.main ? (
-              <h4 className="text-base md:text-lg font-medium text-gray-100">
+              <h4 className="text-base md:text-lg font-medium text-yellow-200">
                 Sensación Termica: {currentWeather.main.feels_like.toFixed()}°
               </h4>
             ) : null}
 
             {currentWeather.main ? (
-              <h4 className="text-base md:text-lg font-medium text-gray-100">
+              <h4 className="text-base md:text-lg font-medium text-yellow-200">
                 Humedad: {currentWeather.main.humidity}%
               </h4>
             ) : null}
           </div>
+
+          {/* ------------------------------------------------------------------------------------ */}
+
+          <div className="w-full h-16 border-t-2 border-gray-300"></div>
         </div>
       </div>
     </div>
