@@ -17,7 +17,7 @@ const InputSearch = ({ inputValue, setInputValue, location, setLocation }) => {
       setInputValue("");
       setValidation(false);
     } else {
-      console.log("Ingresa una ciudad");
+      // console.log("Ingresa una ciudad");
       setValidation(true);
     }
   };
@@ -26,10 +26,11 @@ const InputSearch = ({ inputValue, setInputValue, location, setLocation }) => {
     <>
       <form onSubmit={handleSubmit} className="flex items-center">
         <input
-          className="w-[200px] sm:w-[270px] md:w-[300px] h-12 px-4 bg-gray-600/70 border-y-4 border-l-4 border-gray-200/70 rounded-tl-lg rounded-bl-lg focus:outline-none placeholder:italic placeholder:text-gray-100 text-gray-100"
+          className="w-[200px] sm:w-[270px] md:w-[320px] h-12 px-4 bg-gray-600/70 border-y-4 border-l-4 border-gray-200/70 rounded-tl-lg rounded-bl-lg focus:outline-none placeholder:italic placeholder:text-gray-100 text-gray-100"
           type="text"
           placeholder="Ingresá una Ciudad"
           maxLength="40"
+          autoFocus
           value={inputValue}
           name={location}
           onChange={handleInputSearch}
@@ -43,7 +44,7 @@ const InputSearch = ({ inputValue, setInputValue, location, setLocation }) => {
       </form>
       {validation && (
         <h3 className="text-center text-gray-200 text-lg md:text-xl font-bold mt-2">
-          Ingresa una ciudad por favor
+          Ingresá una ciudad por favor
         </h3>
       )}
     </>
