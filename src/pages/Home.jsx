@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import InputSearch from "../components/input search/InputSearch";
+import WeatherIcons from "../components/weather icons/WeatherIcons";
 
 const Home = () => {
   const [unsplashImg, setUnsplashImg] = useState(null);
@@ -135,11 +136,15 @@ const Home = () => {
 
           {/* --------------------------------------------------------------------------------- */}
 
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-2 items-center">
             {currentWeather.main ? (
               <h2 className="text-5xl md:text-6xl font-bold text-gray-100">
                 {currentWeather.main.temp.toFixed()}°
               </h2>
+            ) : null}
+
+            {currentWeather.weather ? (
+              <WeatherIcons icon={currentWeather.weather[0].icon} />
             ) : null}
 
             <div className="flex flex-col border-l-2 border-gray-300 px-2">
