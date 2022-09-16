@@ -10,6 +10,8 @@ const Home = () => {
 
   const [location, setLocation] = useState("san juan");
 
+  const [nextDaysWeather, setNextDaysWeather] = useState([]);
+
   // ------------------------------ weather map API function ------------------------------------------
 
   const weatherApi = async (city) => {
@@ -18,7 +20,7 @@ const Home = () => {
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_WEATHER_MAP_API_KEY}&units=metric&lang=es`
       );
       const data = await resp.json();
-      console.log(data);
+      // console.log(data);
       setCurrentWeather(data);
     } catch (error) {
       console.log(error);
@@ -29,6 +31,25 @@ const Home = () => {
     weatherApi(location);
   }, [location]);
 
+  // ---------------------------- weather map next 5 days API function -------------------------------
+
+  const weatherNextDaysApi = async (city) => {
+    try {
+      const resp = await fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${process.env.REACT_APP_WEATHER_NEXT_DAYS_API_KEY}&lang=es&units=metric`
+      );
+      const results = await resp.json();
+      console.log(results);
+      setNextDaysWeather(results);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    weatherNextDaysApi(location);
+  }, [location]);
+
   // --------------------------------- unsplash Api function ------------------------------------------
 
   const unsplashApi = async () => {
@@ -37,7 +58,7 @@ const Home = () => {
         `https://api.unsplash.com/photos/random/?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&orientation=landscape&query=paisajes&count=1`
       );
       const dataImg = await response.json();
-      console.log(dataImg);
+      // console.log(dataImg);
       setUnsplashImg(dataImg[0].urls.full);
     } catch (error) {
       console.log(error);
