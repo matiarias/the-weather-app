@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import InputSearch from "../components/input search/InputSearch";
 import LottieLoading from "../components/lottie loading/LottieLoading";
 import WeatherIcons from "../components/weather icons/WeatherIcons";
+import { DateTime } from "luxon";
 
 const Home = () => {
   const [unsplashImg, setUnsplashImg] = useState(null);
@@ -12,7 +13,7 @@ const Home = () => {
 
   const [location, setLocation] = useState("san juan");
 
-  const [nextDaysWeather, setNextDaysWeather] = useState([]);
+  const [dailyWeather, setDailyWeather] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -36,24 +37,24 @@ const Home = () => {
     weatherApi(location);
   }, [location]);
 
-  // ---------------------------- weather map next 5 days API function -------------------------------
+  // ------------------------------ daily weather API function -------------------------------------
 
-  const weatherNextDaysApi = async (city) => {
-    try {
-      const resp = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${process.env.REACT_APP_WEATHER_NEXT_DAYS_API_KEY}&lang=es&units=metric`
-      );
-      const results = await resp.json();
-      console.log(results);
-      setNextDaysWeather(results);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const weatherNextDaysApi = async (latitude, longitude) => {
+  //   try {
+  //     const resp = await fetch(
+  //       `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=current,minutely,hourly,alerts&units=metric&lang=es&appid=${process.env.REACT_APP_DAILY_WEATHER_API_KEY}`
+  //     );
+  //     const results = await resp.json();
+  //     console.log(results);
+  //     setDailyWeather(results);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    weatherNextDaysApi(location);
-  }, [location]);
+  // useEffect(() => {
+  //   weatherNextDaysApi(lat, lon);
+  // }, [lat, lon]);
 
   // --------------------------------- unsplash API function ------------------------------------------
 
@@ -76,18 +77,10 @@ const Home = () => {
 
   // ----------------------------------------- full date ---------------------------------------------
 
-  const date = new Date();
+  const now = DateTime.now(currentWeather.dt);
+  const date = now.toLocaleString(DateTime.DATE_HUGE);
+  // console.log(date);
 
-  const options = {
-    day: "numeric",
-    weekday: "long",
-    month: "long",
-    year: "numeric",
-  };
-
-  const fullDate = date.toLocaleDateString("es-AR", options);
-
-  // console.log(fullDate);
   // --------------------------------------------------------------------------------------------------
 
   return (
@@ -140,7 +133,7 @@ const Home = () => {
 
             <div className="sm:absolute top-2 right-4">
               <span className="text-sm sm:text-base font-medium text-gray-100">
-                {fullDate}
+                {date}
               </span>
             </div>
 
@@ -197,7 +190,20 @@ const Home = () => {
 
             {/* ------------------------------------------------------------------------------------ */}
 
-            <div className="w-full h-auto border-t-2 border-gray-300 grid grid-cols-5"></div>
+            <div className="w-full h-auto border-t-2 border-gray-300 grid grid-cols-5">
+              <div className="flex flex-col justify-center items-center gap-2 mt-2">
+                <h4 className="text-gray-200 text-base md:text-lg">Lunes</h4>
+
+                <div className="flex flex-col justify-center items-center">
+                  <span className="text-lg text-yellow-200 font-bold">
+                    max tem
+                  </span>
+                  <span className="text-lg text-yellow-200 font-bold">
+                    min tem
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>
