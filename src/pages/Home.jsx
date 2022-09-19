@@ -13,7 +13,7 @@ const Home = () => {
 
   const [nextDaysWeather, setNextDaysWeather] = useState([]);
 
-  // ------------------------------ weather map API function ------------------------------------------
+  // ------------------------------ current weather map API function ------------------------------------------
 
   const weatherApi = async (city) => {
     try {
@@ -82,6 +82,16 @@ const Home = () => {
   const fullDate = date.toLocaleDateString("es-AR", options);
 
   // console.log(fullDate);
+
+  // --------------------------------------- Next days of the week ---------------------------------------------
+
+  // const nextDays = new Date();
+  // const dayOptions = {
+  //   weekday: "long",
+  // };
+  // const days = nextDays.toLocaleDateString("es-Ar", dayOptions);
+
+  // console.log(days);
 
   // --------------------------------------------------------------------------------------------------
 
@@ -167,7 +177,7 @@ const Home = () => {
           <div className="mt-2">
             <div className="mb-2">
               {currentWeather.weather ? (
-                <h3 className="text-2xl md:text-3xl font-bold text-yellow-200">
+                <h3 className="text-2xl md:text-3xl font-bold text-blue-300 uppercase">
                   {currentWeather.weather[0].description}
                 </h3>
               ) : null}
@@ -187,7 +197,15 @@ const Home = () => {
 
           {/* ------------------------------------------------------------------------------------ */}
 
-          <div className="w-full h-16 border-t-2 border-gray-300"></div>
+          <div className="w-full h-auto border-t-2 border-gray-300 grid grid-cols-5">
+            {/* {nextDaysWeather.list.map((item, index) => {
+              if (index <= 5) {
+                return;
+              } else {
+                return null;
+              }
+            })} */}
+          </div>
         </div>
       </div>
     </div>
