@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import InputSearch from "../components/input search/InputSearch";
+import LottieLoading from "../components/lottie loading/LottieLoading";
 import WeatherIcons from "../components/weather icons/WeatherIcons";
 
 const Home = () => {
@@ -13,6 +14,8 @@ const Home = () => {
 
   const [nextDaysWeather, setNextDaysWeather] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   // ------------------------------ current weather map API function ------------------------------------------
 
   const weatherApi = async (city) => {
@@ -23,6 +26,7 @@ const Home = () => {
       const data = await resp.json();
       // console.log(data);
       setCurrentWeather(data);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -73,26 +77,17 @@ const Home = () => {
   // ----------------------------------------- full date ---------------------------------------------
 
   const date = new Date();
+
   const options = {
     day: "numeric",
     weekday: "long",
     month: "long",
     year: "numeric",
   };
+
   const fullDate = date.toLocaleDateString("es-AR", options);
 
   // console.log(fullDate);
-
-  // --------------------------------------- Next days of the week ---------------------------------------------
-
-  // const nextDays = new Date();
-  // const dayOptions = {
-  //   weekday: "long",
-  // };
-  // const days = nextDays.toLocaleDateString("es-Ar", dayOptions);
-
-  // console.log(days);
-
   // --------------------------------------------------------------------------------------------------
 
   return (
@@ -116,97 +111,95 @@ const Home = () => {
         {/* ------------------------------------------------------------------------------------------ */}
 
         {currentWeather.cod === "404" && (
-          <p className="text-lg md:text-2xl text-gray-200 font-bold">
+          <p className="text-lg md:text-3xl text-gray-200 font-bold mb-12">
             Ciudad no encontrada
           </p>
         )}
 
         {/* -------------------------------------------------------------------------------- */}
 
-        <div className="relative w-full md:w-[600px] lg:w-[800px] h-auto py-8 sm:py-12 px-2 sm:px-4 flex flex-col justify-center items-center gap-4 bg-black bg-opacity-70 rounded-md shadow-md shadow-white">
-          {/* --------------------------------------------------------------------------------------- */}
+        {isLoading ? (
+          <div className="w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] md:w-[450px] md:h-[450px]">
+            <LottieLoading />
+          </div>
+        ) : (
+          <div className="relative w-full md:w-[600px] lg:w-[800px] h-auto py-8 sm:py-12 px-2 sm:px-4 flex flex-col justify-center items-center gap-4 bg-black bg-opacity-70 rounded-md shadow-md shadow-white">
+            {/* --------------------------------------------------------------------------------------- */}
 
-          <div className="sm:absolute h-auto top-2 left-4 flex flex-col items-center">
-            <span className="text-gray-100 text-lg md:text-xl font-bold">
-              {currentWeather.name}
-            </span>
-
-            {currentWeather.sys ? (
-              <span className="text-gray-100 text-sm md:text-lg font-medium">
-                {currentWeather.sys.country}
+            <div className="sm:absolute h-auto top-2 left-4 flex flex-col items-center">
+              <span className="text-gray-100 text-lg md:text-xl font-bold">
+                {currentWeather.name}
               </span>
-            ) : null}
-          </div>
 
-          <div className="sm:absolute top-2 right-4">
-            <span className="text-sm sm:text-base font-medium text-gray-100">
-              {fullDate}
-            </span>
-          </div>
-
-          {/* --------------------------------------------------------------------------------- */}
-
-          <div className="flex gap-2 items-center">
-            {currentWeather.main ? (
-              <h2 className="text-5xl md:text-6xl font-bold text-gray-100">
-                {currentWeather.main.temp.toFixed()}°
-              </h2>
-            ) : null}
-
-            {currentWeather.weather ? (
-              <WeatherIcons icon={currentWeather.weather[0].icon} />
-            ) : null}
-
-            <div className="flex flex-col border-l-2 border-gray-300 px-2">
-              {currentWeather.main ? (
-                <span className="text-xl md:text-2xl font-bold text-gray-100">
-                  {currentWeather.main.temp_max.toFixed()}°
-                </span>
-              ) : null}
-
-              {currentWeather.main ? (
-                <span className="text-xl md:text-2xl font-bold text-gray-400">
-                  {currentWeather.main.temp_min.toFixed()}°
+              {currentWeather.sys ? (
+                <span className="text-gray-100 text-sm md:text-lg font-medium">
+                  {currentWeather.sys.country}
                 </span>
               ) : null}
             </div>
-          </div>
 
-          {/* -------------------------------------------------------------------------------- */}
+            <div className="sm:absolute top-2 right-4">
+              <span className="text-sm sm:text-base font-medium text-gray-100">
+                {fullDate}
+              </span>
+            </div>
 
-          <div className="mt-2">
-            <div className="mb-2">
+            {/* --------------------------------------------------------------------------------- */}
+
+            <div className="flex gap-2 items-center">
+              {currentWeather.main ? (
+                <h2 className="text-5xl md:text-6xl font-bold text-gray-100">
+                  {currentWeather.main.temp.toFixed()}°
+                </h2>
+              ) : null}
+
               {currentWeather.weather ? (
-                <h3 className="text-2xl md:text-3xl font-bold text-blue-300 uppercase">
-                  {currentWeather.weather[0].description}
-                </h3>
+                <WeatherIcons icon={currentWeather.weather[0].icon} />
+              ) : null}
+
+              <div className="flex flex-col border-l-2 border-gray-300 px-2">
+                {currentWeather.main ? (
+                  <span className="text-xl md:text-2xl font-bold text-gray-100">
+                    {currentWeather.main.temp_max.toFixed()}°
+                  </span>
+                ) : null}
+
+                {currentWeather.main ? (
+                  <span className="text-xl md:text-2xl font-bold text-gray-400">
+                    {currentWeather.main.temp_min.toFixed()}°
+                  </span>
+                ) : null}
+              </div>
+            </div>
+
+            {/* -------------------------------------------------------------------------------- */}
+
+            <div className="mt-2">
+              <div className="mb-2">
+                {currentWeather.weather ? (
+                  <h3 className="text-2xl md:text-3xl font-bold text-blue-300 uppercase">
+                    {currentWeather.weather[0].description}
+                  </h3>
+                ) : null}
+              </div>
+              {currentWeather.main ? (
+                <h4 className="text-base md:text-lg font-medium text-yellow-200">
+                  Sensación Termica: {currentWeather.main.feels_like.toFixed()}°
+                </h4>
+              ) : null}
+
+              {currentWeather.main ? (
+                <h4 className="text-base md:text-lg font-medium text-yellow-200">
+                  Humedad: {currentWeather.main.humidity}%
+                </h4>
               ) : null}
             </div>
-            {currentWeather.main ? (
-              <h4 className="text-base md:text-lg font-medium text-yellow-200">
-                Sensación Termica: {currentWeather.main.feels_like.toFixed()}°
-              </h4>
-            ) : null}
 
-            {currentWeather.main ? (
-              <h4 className="text-base md:text-lg font-medium text-yellow-200">
-                Humedad: {currentWeather.main.humidity}%
-              </h4>
-            ) : null}
+            {/* ------------------------------------------------------------------------------------ */}
+
+            <div className="w-full h-auto border-t-2 border-gray-300 grid grid-cols-5"></div>
           </div>
-
-          {/* ------------------------------------------------------------------------------------ */}
-
-          <div className="w-full h-auto border-t-2 border-gray-300 grid grid-cols-5">
-            {/* {nextDaysWeather.list.map((item, index) => {
-              if (index <= 5) {
-                return;
-              } else {
-                return null;
-              }
-            })} */}
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );
