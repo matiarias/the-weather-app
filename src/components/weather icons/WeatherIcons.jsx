@@ -1,7 +1,7 @@
 import React from "react";
 import ReactAnimatedWeather from "react-animated-weather";
 
-const WeatherIcons = ({ icon }) => {
+const WeatherIcons = ({ icon, size }) => {
   const codeIcons = {
     "01d": "CLEAR_DAY",
     "01n": "CLEAR_NIGHT",
@@ -27,7 +27,7 @@ const WeatherIcons = ({ icon }) => {
       <ReactAnimatedWeather
         icon={codeIcons[icon]}
         color="#f8f8f8"
-        size={40}
+        size={size}
         animate={true}
       />
     </div>

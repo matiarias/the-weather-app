@@ -43,7 +43,7 @@ const InputSearch = ({ inputValue, setInputValue, location, setLocation }) => {
         </button>
       </form>
       {validation && (
-        <h3 className="text-center text-gray-200 text-lg md:text-xl font-bold mt-2">
+        <h3 className="text-center text-gray-200 text-lg font-bold mt-2">
           Ingresá una ciudad por favor
         </h3>
       )}
