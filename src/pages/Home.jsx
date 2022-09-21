@@ -103,8 +103,8 @@ const Home = () => {
             alt="unsplash nature"
           />
           <div className="absolute top-0 left-0 h-full w-full bg-gray-800/40"></div>
-          <div className="absolute top-0 left-0 h-full w-full px-12 flex flex-col justify-center items-center">
-            <div className="absolute top-8 md:top-4">
+          <div className="absolute top-0 left-0 h-full w-full px-12 flex flex-col justify-evenly items-center">
+            <div className="">
               <InputSearch
                 inputValue={inputValue}
                 setInputValue={setInputValue}
@@ -123,7 +123,7 @@ const Home = () => {
 
             {/* -------------------------------------------------------------------------------- */}
 
-            <div className="relative w-full md:w-[600px] lg:w-[800px] h-auto py-8 sm:py-16 md:py-8 px-2 sm:px-4 flex flex-col justify-center items-center gap-4 bg-black bg-opacity-70 rounded-md shadow-md shadow-white">
+            <div className="relative w-full md:w-[600px] lg:w-[800px] h-auto py-8 sm:py-16 md:py-8 px-2 sm:px-4 flex flex-col justify-center items-center gap-4 bg-black bg-opacity-70 rounded-md shadow-md shadow-white mb-4">
               {/* --------------------------------------------------------------------------------------- */}
 
               <div className="sm:absolute h-auto top-2 left-4 flex flex-col items-center">
