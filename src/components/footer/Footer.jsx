@@ -6,7 +6,7 @@ import { FaInstagram } from "react-icons/fa";
 const Footer = () => {
   return (
     <>
-      <div className="absolute bottom-0 left-0 w-full h-[80px] sm:h-[50px] bg-gradient-to-r from-gray-500/40 to-gray-900 flex flex-col justify-center items-center sm:flex-row sm:justify-center sm:items-center gap-2 sm:gap-6">
+      <div className="absolute bottom-0 left-0 w-full h-[90px] sm:h-[50px] bg-gradient-to-r from-gray-500/50 to-gray-900 flex flex-col justify-center items-center sm:flex-row sm:justify-center sm:items-center gap-2 sm:gap-6">
         <div className="flex gap-2 items-center">
           <h4 className="text-gray-200 text-lg font-bold">
             Creado por Matias Arias
@@ -16,13 +16,13 @@ const Footer = () => {
 
         <div className="flex gap-6">
           <a href="https://github.com/matiarias" target="_blank">
-            <FaGithub className="text-4xl md:text-3xl hover:text-gray-400" />
+            <FaGithub className="text-white text-4xl md:text-3xl hover:text-gray-400" />
           </a>
           <a href="https://www.linkedin.com/in/matiasarias27" target="_blank">
-            <FaLinkedinIn className="text-4xl md:text-3xl hover:text-gray-400" />
+            <FaLinkedinIn className="text-white text-4xl md:text-3xl hover:text-gray-400" />
           </a>
           <a href="https://www.instagram.com/_matiarias/?hl=es" target="_blank">
-            <FaInstagram className="text-4xl md:text-3xl hover:text-gray-400" />
+            <FaInstagram className="text-white text-4xl md:text-3xl hover:text-gray-400" />
           </a>
         </div>
       </div>
