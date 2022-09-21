@@ -64,22 +64,22 @@ const Home = () => {
 
   // --------------------------------- unsplash API function ------------------------------------------
 
-  const unsplashApi = async () => {
-    try {
-      const response = await fetch(
-        `https://api.unsplash.com/photos/random/?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&orientation=landscape&query=paisajes&count=1`
-      );
-      const dataImg = await response.json();
-      // console.log(dataImg);
-      setUnsplashImg(dataImg[0].urls.regular);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const unsplashApi = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       `https://api.unsplash.com/photos/random/?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&orientation=landscape&query=paisajes&count=1`
+  //     );
+  //     const dataImg = await response.json();
+  //     // console.log(dataImg);
+  //     setUnsplashImg(dataImg[0].urls.regular);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    unsplashApi();
-  }, []);
+  // useEffect(() => {
+  //   unsplashApi();
+  // }, []);
 
   // ----------------------------------------- full date ---------------------------------------------
 
@@ -96,12 +96,12 @@ const Home = () => {
       </div>
 
       {currentWeather && dailyWeather && (
-        <div className="relative h-screen w-full z-0">
-          <img
+        <div className="relative min-h-screen w-full z-0">
+          {/* <img
             className="h-full w-full object-cover object-center"
             src={unsplashImg}
             alt="unsplash nature"
-          />
+          /> */}
           <div className="absolute top-0 left-0 h-full w-full bg-gray-800/40"></div>
           <div className="absolute top-0 left-0 h-full w-full px-12 flex flex-col justify-center items-center z-20">
             <div className="absolute top-6 md:top-4 z-50">
@@ -228,8 +228,8 @@ const Home = () => {
                 ))}
               </div>
             </div>
-            <Footer />
           </div>
+          {/* <Footer /> */}
         </div>
       )}
     </>
