@@ -85,6 +85,7 @@ const Home = () => {
 
   const now = DateTime.now();
   const date = now.toLocaleString(DateTime.DATE_HUGE);
+  // console.log(date);
 
   // --------------------------------------------------------------------------------------------------
 

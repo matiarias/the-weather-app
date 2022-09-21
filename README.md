@@ -12,11 +12,15 @@ Deploy Site: [https://the-world-weather-app.vercel.app/](https://the-world-weath
 
 ---
 
-## Api
+## APIs
 
-for the data requests i used three APIs [https://unsplash.com/developers](https://unsplash.com/developers)
-[https://openweathermap.org/current](https://openweathermap.org/current)
-[https://openweathermap.org/api/one-call-3](https://openweathermap.org/api/one-call-3)
+for the data requests i used three APIs
+
+- [https://unsplash.com/developers](https://unsplash.com/developers)
+
+- [https://openweathermap.org/current](https://openweathermap.org/current)
+
+- [https://openweathermap.org/api/one-call-3](https://openweathermap.org/api/one-call-3)
 
 ## Built with
 
