@@ -71,7 +71,7 @@ const Home = () => {
       );
       const dataImg = await response.json();
       // console.log(dataImg);
-      setUnsplashImg(dataImg[0].urls.full);
+      setUnsplashImg(dataImg[0].urls.regular);
     } catch (error) {
       console.log(error);
     }
@@ -96,15 +96,15 @@ const Home = () => {
       </div>
 
       {currentWeather && dailyWeather && (
-        <div className="relative min-h-screen w-full z-0">
+        <div className="relative h-screen w-full z-0">
           <img
             className="h-full w-full object-cover object-center"
             src={unsplashImg}
             alt="unsplash nature"
           />
           <div className="absolute top-0 left-0 h-full w-full bg-gray-800/40"></div>
-          <div className="absolute top-0 left-0 h-full w-full px-12 flex flex-col justify-center items-center z-50">
-            <div className="absolute top-6 md:top-4 z-100">
+          <div className="absolute top-0 left-0 h-full w-full px-12 flex flex-col justify-center items-center z-20">
+            <div className="absolute top-6 md:top-4 z-50">
               <InputSearch
                 inputValue={inputValue}
                 setInputValue={setInputValue}
