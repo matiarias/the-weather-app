@@ -123,10 +123,10 @@ const Home = () => {
 
             {/* -------------------------------------------------------------------------------- */}
 
-            <div className="relative w-full md:w-[600px] lg:w-[800px] h-auto py-2 sm:py-16 md:py-12 px-4 flex flex-col justify-center items-center gap-4 bg-black bg-opacity-70 rounded-md shadow-md shadow-white mb-2">
+            <div className="w-full md:w-[600px] lg:w-[800px] h-auto py-2 sm:py-8 md:py-2 px-4 flex flex-col justify-center items-center gap-4 bg-black bg-opacity-70 rounded-md shadow-md shadow-white mt-2">
               {/* --------------------------------------------------------------------------------------- */}
 
-              <div className="sm:absolute h-auto top-2 left-4 flex flex-col items-center">
+              <div className="flex flex-col items-center">
                 <span className="text-gray-100 text-lg md:text-xl font-bold">
                   {currentWeather.name}
                 </span>
@@ -138,7 +138,7 @@ const Home = () => {
                 ) : null}
               </div>
 
-              <div className="sm:absolute top-2 right-4">
+              <div className="">
                 {currentWeather.cod === "404" ? null : (
                   <span className="text-sm sm:text-base font-medium text-gray-100">
                     {date}
