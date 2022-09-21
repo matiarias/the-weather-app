@@ -24,7 +24,7 @@ const InputSearch = ({ inputValue, setInputValue, location, setLocation }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="flex items-center z-20">
+      <form onSubmit={handleSubmit} className="flex items-center">
         <input
           className="w-[230px] sm:w-[270px] md:w-[320px] h-12 px-4 bg-gray-600/70 border-y-4 border-l-4 border-gray-200/70 rounded-tl-lg rounded-bl-lg focus:outline-none placeholder:italic placeholder:text-gray-100 text-gray-100"
           type="text"

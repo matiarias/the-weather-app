@@ -96,15 +96,15 @@ const Home = () => {
       </div>
 
       {currentWeather && dailyWeather && (
-        <div className="relative h-screen w-full">
+        <div className="relative min-h-screen w-full z-0">
           <img
             className="h-full w-full object-cover object-center"
             src={unsplashImg}
             alt="unsplash nature"
           />
           <div className="absolute top-0 left-0 h-full w-full bg-gray-800/40"></div>
-          <div className="absolute top-0 left-0 h-full w-full px-12 flex flex-col justify-center items-center">
-            <div className="absolute top-6 md:top-4">
+          <div className="absolute top-0 left-0 h-full w-full px-12 flex flex-col justify-center items-center z-50">
+            <div className="absolute top-6 md:top-4 z-100">
               <InputSearch
                 inputValue={inputValue}
                 setInputValue={setInputValue}
@@ -123,7 +123,7 @@ const Home = () => {
 
             {/* -------------------------------------------------------------------------------- */}
 
-            <div className="relative w-full md:w-[600px] lg:w-[800px] h-auto py-2 sm:py-16 md:py-12 px-4 flex flex-col justify-center items-center gap-4 bg-black bg-opacity-70 rounded-md shadow-md shadow-white mb-4">
+            <div className="relative w-full md:w-[600px] lg:w-[800px] h-auto py-2 sm:py-16 md:py-12 px-4 flex flex-col justify-center items-center gap-4 bg-black bg-opacity-70 rounded-md shadow-md shadow-white mb-2">
               {/* --------------------------------------------------------------------------------------- */}
 
               <div className="sm:absolute h-auto top-2 left-4 flex flex-col items-center">
