@@ -3,7 +3,7 @@ import InputSearch from "../components/input search/InputSearch";
 import LottieLoading from "../components/lottie loading/LottieLoading";
 import WeatherIcons from "../components/weather icons/WeatherIcons";
 import { DateTime } from "luxon";
-import Footer from "../components/footer/Footer";
+import SocialMedia from "../components/social media/SocialMedia";
 
 const Home = () => {
   const [unsplashImg, setUnsplashImg] = useState(null);
@@ -64,22 +64,22 @@ const Home = () => {
 
   // --------------------------------- unsplash API function ------------------------------------------
 
-  // const unsplashApi = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       `https://api.unsplash.com/photos/random/?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&orientation=landscape&query=paisajes&count=1`
-  //     );
-  //     const dataImg = await response.json();
-  //     // console.log(dataImg);
-  //     setUnsplashImg(dataImg[0].urls.regular);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const unsplashApi = async () => {
+    try {
+      const response = await fetch(
+        `https://api.unsplash.com/photos/random/?client_id=${process.env.REACT_APP_UNSPLASH_API_KEY}&orientation=landscape&query=paisajes&count=1`
+      );
+      const dataImg = await response.json();
+      // console.log(dataImg);
+      setUnsplashImg(dataImg[0].urls.regular);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // useEffect(() => {
-  //   unsplashApi();
-  // }, []);
+  useEffect(() => {
+    unsplashApi();
+  }, []);
 
   // ----------------------------------------- full date ---------------------------------------------
 
@@ -96,15 +96,16 @@ const Home = () => {
       </div>
 
       {currentWeather && dailyWeather && (
-        <div className="relative min-h-screen w-full z-0">
-          {/* <img
+        <div className="relative h-screen w-full">
+          <img
             className="h-full w-full object-cover object-center"
             src={unsplashImg}
             alt="unsplash nature"
-          /> */}
-          <div className="absolute top-0 left-0 h-full w-full bg-gray-800/40"></div>
-          <div className="absolute top-0 left-0 h-full w-full px-12 flex flex-col justify-center items-center z-20">
-            <div className="absolute top-6 md:top-4 z-50">
+          />
+
+          <div className="absolute top-0 left-0 h-full w-full bg-gray-700/30"></div>
+          <div className="absolute top-0 left-0 h-full w-full px-12 flex flex-col justify-start md:justify-center items-center gap-4 md:gap-8">
+            <div className="mt-16 md:mt-0">
               <InputSearch
                 inputValue={inputValue}
                 setInputValue={setInputValue}
@@ -116,17 +117,17 @@ const Home = () => {
             {/* ------------------------------------------------------------------------------------------ */}
 
             {currentWeather.cod === "404" && (
-              <p className="text-xl md:text-3xl text-gray-200 font-bold mb-12">
+              <p className="text-xl md:text-3xl text-gray-200 font-bold mb-12 text-center">
                 Ciudad no encontrada
               </p>
             )}
 
             {/* -------------------------------------------------------------------------------- */}
 
-            <div className="w-full md:w-[600px] lg:w-[800px] h-auto py-2 sm:py-8 md:py-2 px-4 flex flex-col justify-center items-center gap-4 bg-black bg-opacity-70 rounded-md shadow-md shadow-white mt-2">
+            <div className="relative w-full md:w-[600px] lg:w-[800px] h-auto py-8 sm:py-16 md:py-12 px-2 sm:px-6 flex flex-col justify-center items-center gap-4 bg-black bg-opacity-70 rounded-md shadow-md shadow-white mt-2">
               {/* --------------------------------------------------------------------------------------- */}
 
-              <div className="flex flex-col items-center">
+              <div className="sm:absolute sm:top-2 sm:left-4 flex flex-col items-center">
                 <span className="text-gray-100 text-lg md:text-xl font-bold">
                   {currentWeather.name}
                 </span>
@@ -138,7 +139,7 @@ const Home = () => {
                 ) : null}
               </div>
 
-              <div className="">
+              <div className="sm:absolute sm:top-2 sm:right-4">
                 {currentWeather.cod === "404" ? null : (
                   <span className="text-sm sm:text-base font-medium text-gray-100">
                     {date}
@@ -228,8 +229,8 @@ const Home = () => {
                 ))}
               </div>
             </div>
+            <SocialMedia />
           </div>
-          {/* <Footer /> */}
         </div>
       )}
     </>

@@ -24,9 +24,12 @@ const InputSearch = ({ inputValue, setInputValue, location, setLocation }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="flex items-center">
+      <form
+        onSubmit={handleSubmit}
+        className="flex justify-center items-center"
+      >
         <input
-          className="w-[230px] sm:w-[270px] md:w-[320px] h-12 px-4 bg-gray-600/70 border-y-4 border-l-4 border-gray-200/70 rounded-tl-lg rounded-bl-lg focus:outline-none placeholder:italic placeholder:text-gray-100 text-gray-100"
+          className="w-60 sm:w-[270px] md:w-[320px] h-16 sm:h-12 px-4 bg-gray-600/70 border-y-4 border-l-4 border-gray-200/70 rounded-tl-lg rounded-bl-lg focus:outline-none placeholder:italic placeholder:text-gray-100 text-gray-100"
           type="text"
           placeholder="Ingresá una Ciudad"
           maxLength="40"
@@ -37,7 +40,7 @@ const InputSearch = ({ inputValue, setInputValue, location, setLocation }) => {
         />
         <button
           type="submit"
-          className="w-12 h-12 rounded-tr-lg rounded-br-lg border-y-4 border-r-4 border-l-2 border-gray-200/70 bg-gray-600/70 flex justify-center items-center"
+          className="w-16 sm:w-12 h-16 sm:h-12 rounded-tr-lg rounded-br-lg border-y-4 border-r-4 border-l-2 border-gray-200/70 bg-gray-600/70 flex justify-center items-center"
         >
           <BsSearch className="text-2xl text-gray-100 animate-pulse" />
         </button>
